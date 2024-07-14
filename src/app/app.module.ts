@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { TopmoviesComponent } from './topmovies/topmovies.component';
 import { MovieQuizGameComponent } from './movie-quiz-game/movie-quiz-game.component';
 import { FormsModule } from '@angular/forms';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     TopmoviesComponent,
     MovieQuizGameComponent,
+    NavigationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
