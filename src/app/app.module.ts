@@ -6,19 +6,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { TopmoviesComponent } from './topmovies/topmovies.component';
 import { MovieQuizGameComponent } from './movie-quiz-game/movie-quiz-game.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TopmoviesComponent,
-    MovieQuizGameComponent
+    MovieQuizGameComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
