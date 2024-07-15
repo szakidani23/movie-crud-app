@@ -9,6 +9,7 @@ import { MovieQuizGameComponent } from './movie-quiz-game/movie-quiz-game.compon
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MovieQuizGameComponent,
     NavigationComponent,
     PageNotFoundComponent,
+    FooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
