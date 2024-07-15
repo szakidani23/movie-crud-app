@@ -1,0 +1,85 @@
+<!-- Main Home Container -->
+<div class="container">
+  <!-- User Input Container -->
+  <div class="userInputContainer">
+    <input
+      class="form-control mb-2 bg-dark border-0 text-light visually-hidden"
+      placeholder="ID"
+      type="text"
+      [(ngModel)]="movie.id"
+      disabled
+    />
+    <input
+      class="form-control mb-2 bg-dark border-0 text-light"
+      placeholder="Name"
+      type="text"
+      [(ngModel)]="movie.name"
+    />
+    <input
+      class="form-control mb-2 bg-dark border-0 text-light"
+      placeholder="Genre"
+      type="text"
+      [(ngModel)]="movie.genre"
+    />
+    <input
+      class="form-control mb-2 bg-dark border-0 text-light"
+      placeholder="Year"
+      type="text"
+      [(ngModel)]="movie.year"
+    />
+    <input
+      class="form-control mb-2 bg-dark border-0 text-light"
+      placeholder="Duration"
+      type="number"
+      [(ngModel)]="movie.duration"
+    />
+    <input
+      class="form-control mb-2 bg-dark border-0 text-light"
+      placeholder="Age Rating"
+      type="number"
+      [(ngModel)]="movie.ageRating"
+    />
+    <input
+      class="form-control mb-2 bg-dark border-0 text-light"
+      placeholder="IMDB Score"
+      type="number"
+      [(ngModel)]="movie.imdbScore"
+    />
+  </div>
+  <!-- Button Container -->
+  <div class="buttons my-3">
+    <button class="btn btn-sm btn-success">
+      Add Movie <i class="bi bi-plus"></i>
+    </button>
+    <button class="btn btn-sm btn-primary me-2">Save Edits</button>
+    <button class="btn btn-sm btn-danger">Cancel Edits</button>
+  </div>
+
+  <!-- Table Container -->
+  <div class="tableContainer">
+    <table class="table table-sm table-dark table-striped text-center">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Genre</th>
+          <th>Year</th>
+          <th>Duration</th>
+          <th>Age Rating</th>
+          <th>imdB Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movie of movies; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ movie.name }}</td>
+          <td>{{ movie.genre }}</td>
+          <td>{{ movie.year }}</td>
+          <td>{{ movie.duration }}</td>
+          <td>{{ movie.ageRating }}</td>
+          <td>{{ movie.imdbScore }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
