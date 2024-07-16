@@ -56,8 +56,14 @@
   </div>
 
   <!-- Table Container -->
+  <p class="fs-3" *ngIf="movies.length < 1">
+    Table is empty. Please add a movie!
+  </p>
   <div class="tableContainer">
-    <table class="table table-sm table-dark table-striped text-center">
+    <table
+      *ngIf="movies.length > 0"
+      class="table table-sm table-dark table-striped text-center"
+    >
       <thead>
         <tr>
           <th>#</th>
