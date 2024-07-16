@@ -70,4 +70,24 @@ export class HomeComponent implements OnInit {
       this.movie.imdbScore > 10
     );
   }
+
+  // Sorting:
+  sortByName(): void {
+    this.movies.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  sortByGenre(): void {
+    this.movies.sort((a, b) => a.genre.localeCompare(b.genre));
+  }
+  sortByYear(): void {
+    this.movies.sort((a, b) => a.year! - b.year!);
+  }
+  sortByDuration(): void {
+    this.movies.sort((a, b) => a.duration! - b.duration!);
+  }
+  sortByAgeRating(): void {
+    this.movies.sort((a, b) => a.ageRating! - b.ageRating!);
+  }
+  sortByScore(): void {
+    this.movies.sort((a, b) => a.imdbScore! - b.imdbScore!);
+  }
 }
