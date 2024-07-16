@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Movie } from '../movie';
 
 @Component({
@@ -6,51 +6,68 @@ import { Movie } from '../movie';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   movies: Movie[] = [];
   movie: Movie = new Movie();
-  movieLocalDB: string = 'movieLocalDB';
+  movieLocalDb: string = 'movieLocalDb';
   editEnabled: boolean = false;
 
-  constructor() {
-    this.seedData();
+  ngOnInit(): void {
+    this.loadData();
   }
 
-  loadData() {}
+  loadData(): void {
+    let json = JSON.parse(localStorage.getItem(this.movieLocalDb) ?? '[]');
+    this.movies = Object.values(json).map((x) => Object.assign(new Movie(), x));
+  }
+  saveData(): void {
+    localStorage.setItem(this.movieLocalDb, JSON.stringify(this.movies));
+  }
 
-  saveData() {}
+  addMovie(): void {
+    this.movies.unshift(Object.assign(new Movie(), this.movie));
+    this.movie.resetProperties();
+    this.saveData();
+  }
 
-  addMovie() {}
-  deleteMovie() {}
-  saveEdits() {}
-  cancelEdits() {}
+  loadForEdit(movie: Movie): void {
+    Object.assign(this.movie, movie);
+    this.editEnabled = true;
+  }
 
-  seedData() {
-    let d = new Movie();
-    d.name = 'Test Movie1';
-    d.genre = 'Test Genre';
-    d.year = 1998;
-    d.duration = 128;
-    d.ageRating = 12;
-    d.imdbScore = 6.9;
-    this.movies.push(d);
+  deleteMovie(movie: Movie): void {
+    this.movies = this.movies.filter((x) => x.id !== movie.id);
+    this.saveData();
+  }
 
-    d = new Movie();
-    d.name = 'Test Movie2';
-    d.genre = 'Test Genre';
-    d.year = 1996;
-    d.duration = 121;
-    d.ageRating = 6;
-    d.imdbScore = 8.6;
-    this.movies.push(d);
+  saveEdits(): void {
+    let index = this.movies.findIndex((x) => x.id === this.movie.id);
+    this.movies[index] = Object.assign(new Movie(), this.movie);
+    this.editEnabled = false;
+    this.saveData();
+    this.movie.resetProperties();
+  }
 
-    d = new Movie();
-    d.name = 'Test Movie3';
-    d.genre = 'Test Genre';
-    d.year = 2012;
-    d.duration = 145;
-    d.ageRating = 18;
-    d.imdbScore = 6.3;
-    this.movies.push(d);
+  cancelEdits(): void {
+    this.movie.resetProperties();
+    this.editEnabled = false;
+  }
+
+  addBtnDisabled(): boolean {
+    return (
+      this.movie.name === '' ||
+      this.movie.name.length < 2 ||
+      this.movie.genre === '' ||
+      this.movie.genre.length <= 3 ||
+      this.movie.year === null ||
+      this.movie.year < 1800 ||
+      this.movie.duration === null ||
+      this.movie.duration < 1 ||
+      this.movie.ageRating === null ||
+      this.movie.ageRating < 6 ||
+      this.movie.imdbScore === null ||
+      this.movie.imdbScore < 1 ||
+      this.movie.imdbScore > 10
+    );
   }
 }
