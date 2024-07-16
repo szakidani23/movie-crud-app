@@ -71,7 +71,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  // Sorting:
+  // Sorting
+
   sortByName(): void {
     this.movies.sort((a, b) => a.name.localeCompare(b.name));
   }
