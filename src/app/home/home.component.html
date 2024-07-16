@@ -48,12 +48,20 @@
   </div>
   <!-- Button Container -->
   <div class="buttons my-4">
-    <button *ngIf="!editEnabled" class="btn btn-sm btn-success">
+    <button
+      *ngIf="!editEnabled"
+      class="btn btn-sm btn-success"
+      (click)="addMovie()"
+    >
       Add Movie <i class="bi bi-plus"></i>
     </button>
     <div *ngIf="editEnabled" class="editBtns">
-      <button class="btn btn-sm btn-primary me-2">Save Edits</button>
-      <button class="btn btn-sm btn-danger">Cancel Edits</button>
+      <button class="btn btn-sm btn-primary me-2" (click)="saveEdits()">
+        Save Edits
+      </button>
+      <button class="btn btn-sm btn-danger" (click)="cancelEdits()">
+        Cancel Edits
+      </button>
     </div>
   </div>
 
@@ -88,10 +96,13 @@
           <td>{{ movie.ageRating }} +</td>
           <td>{{ movie.imdbScore }}</td>
           <td>
-            <button class="btn btn-sm btn-warning me-2">
+            <button
+              class="btn btn-sm btn-warning me-2"
+              (click)="editEnabled = true"
+            >
               <i class="bi bi-pencil"></i>
             </button>
-            <button class="btn btn-sm btn-danger">
+            <button class="btn btn-sm btn-danger" (click)="deleteMovie()">
               <i class="bi bi-trash"></i>
             </button>
           </td>

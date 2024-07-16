@@ -16,6 +16,15 @@ export class HomeComponent {
     this.seedData();
   }
 
+  loadData() {}
+
+  saveData() {}
+
+  addMovie() {}
+  deleteMovie() {}
+  saveEdits() {}
+  cancelEdits() {}
+
   seedData() {
     let d = new Movie();
     d.name = 'Test Movie1';
