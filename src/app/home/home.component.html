@@ -48,11 +48,13 @@
   </div>
   <!-- Button Container -->
   <div class="buttons my-4">
-    <button class="btn btn-sm btn-success">
+    <button *ngIf="!editEnabled" class="btn btn-sm btn-success">
       Add Movie <i class="bi bi-plus"></i>
     </button>
-    <button class="btn btn-sm btn-primary me-2">Save Edits</button>
-    <button class="btn btn-sm btn-danger">Cancel Edits</button>
+    <div *ngIf="editEnabled" class="editBtns">
+      <button class="btn btn-sm btn-primary me-2">Save Edits</button>
+      <button class="btn btn-sm btn-danger">Cancel Edits</button>
+    </div>
   </div>
 
   <!-- Table Container -->
@@ -73,6 +75,7 @@
           <th>Duration</th>
           <th>Age Rating</th>
           <th>imdB Score</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -81,9 +84,17 @@
           <td>{{ movie.name }}</td>
           <td>{{ movie.genre }}</td>
           <td>{{ movie.year }}</td>
-          <td>{{ movie.duration }}</td>
-          <td>{{ movie.ageRating }}</td>
+          <td>{{ movie.duration }} mins</td>
+          <td>{{ movie.ageRating }} +</td>
           <td>{{ movie.imdbScore }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-sm btn-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
