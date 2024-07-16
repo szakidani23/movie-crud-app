@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
     let json = JSON.parse(localStorage.getItem(this.movieLocalDb) ?? '[]');
     this.movies = Object.values(json).map((x) => Object.assign(new Movie(), x));
   }
+
   saveData(): void {
     localStorage.setItem(this.movieLocalDb, JSON.stringify(this.movies));
   }
