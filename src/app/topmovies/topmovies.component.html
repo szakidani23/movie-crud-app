@@ -1,23 +1,55 @@
 <div class="container">
-  <div class="statTable">
-    <table class="table table-sm table-striped table-dark text-center">
+  <div class="statBox">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>Statistics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Top rated Movie:</td>
+        </tr>
+        <tr>
+          <td>Oldest Movie:</td>
+        </tr>
+        <tr>
+          <td>Newest Movie:</td>
+        </tr>
+        <tr>
+          <td>Longest Movie:</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="fs-3" *ngIf="movies.length < 1">
+    Table is empty. Please add a movie!
+  </p>
+  <div class="statTable" *ngIf="movies.length > 0">
+    <table class="table table-sm table-striped table-dark">
       <thead>
         <tr>
           <th>Name</th>
-          <th>Year</th>
-          <th>Duration</th>
-          <th>imdB Score</th>
+          <th (click)="sortByYear()" role="button">
+            Year <i class="bi bi-arrow-down-up"></i>
+          </th>
+          <th (click)="sortByDuration()" role="button">
+            Duration <i class="bi bi-arrow-down-up"></i>
+          </th>
+          <th (click)="sortByScore()" role="button">
+            imdB Score <i class="bi bi-arrow-down-up"></i>
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let movie of movies; index as i">
           <td>{{ movie.name }}</td>
           <td>{{ movie.year }}</td>
-          <td>{{ movie.duration }}</td>
+          <td>{{ movie.duration }} mins</td>
           <td>{{ movie.imdbScore }}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="statBox"></div>
 </div>
