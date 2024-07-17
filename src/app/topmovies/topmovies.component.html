@@ -1,26 +1,32 @@
 <div class="container">
   <div class="statBox">
-    <table class="table table-sm">
+    <table class="table table-sm table-warning table-striped">
       <thead>
         <tr>
-          <th>Statistics</th>
+          <th class="ps-3 fs-4">Statistics of Top Movies</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Top rated Movie:</td>
+          <td class="ps-3">Top rated Movie: {{ topRatedMovie() }}</td>
         </tr>
         <tr>
-          <td>Oldest Movie:</td>
+          <td class="ps-3">Average Score of Movies:</td>
         </tr>
         <tr>
-          <td>Newest Movie:</td>
+          <td class="ps-3">Oldest Movie:</td>
         </tr>
         <tr>
-          <td>Longest Movie:</td>
+          <td class="ps-3">Newest Movie:</td>
+        </tr>
+        <tr>
+          <td class="ps-3">Longest Movie:</td>
         </tr>
       </tbody>
     </table>
+    <button class="btn btn-sm btn-success mb-3 px-3" routerLink="/home">
+      Add more movies <i class="bi bi-plus"></i>
+    </button>
   </div>
 
   <p class="fs-3" *ngIf="movies.length < 1">
@@ -30,7 +36,7 @@
     <table class="table table-sm table-striped table-dark">
       <thead>
         <tr>
-          <th>Name</th>
+          <th class="ps-3">Name</th>
           <th (click)="sortByYear()" role="button">
             Year <i class="bi bi-arrow-down-up"></i>
           </th>
@@ -44,7 +50,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let movie of movies; index as i">
-          <td>{{ movie.name }}</td>
+          <td class="ps-3">{{ movie.name }}</td>
           <td>{{ movie.year }}</td>
           <td>{{ movie.duration }} mins</td>
           <td>{{ movie.imdbScore }}</td>

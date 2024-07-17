@@ -20,6 +20,10 @@ export class TopmoviesComponent implements OnInit {
     this.movies = Object.values(json).map((x) => Object.assign(new Movie(), x));
   }
 
+  topRatedMovie(): string {
+    return this.movies.sort((a, b) => b.imdbScore! - a.imdbScore!)[0].name;
+  }
+
   sortByYear(): void {
     this.movies.sort((a, b) =>
       this.ascending ? a.year! - b.year! : b.year! - a.year!
