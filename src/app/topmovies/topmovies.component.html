@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="statTable">
+    <table class="table table-sm table-striped table-dark text-center">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Year</th>
+          <th>Duration</th>
+          <th>imdB Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movie of movies; index as i">
+          <td>{{ movie.name }}</td>
+          <td>{{ movie.year }}</td>
+          <td>{{ movie.duration }}</td>
+          <td>{{ movie.imdbScore }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="statBox"></div>
+</div>

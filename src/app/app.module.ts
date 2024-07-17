@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FooterComponent } from './footer/footer.component';
-import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,7 @@ import { TableComponent } from './table/table.component';
     NavigationComponent,
     PageNotFoundComponent,
     FooterComponent,
-    TableComponent,
+  
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
