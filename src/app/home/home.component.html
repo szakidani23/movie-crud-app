@@ -26,24 +26,32 @@
       placeholder="Year"
       type="text"
       [(ngModel)]="movie.year"
+      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+      title="Numbers only"
     />
     <input
       class="form-control mb-2 bg-dark border-0 text-light"
       placeholder="Duration"
       type="number"
       [(ngModel)]="movie.duration"
+      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+      title="Numbers only"
     />
     <input
       class="form-control mb-2 bg-dark border-0 text-light"
       placeholder="Age Rating"
       type="number"
       [(ngModel)]="movie.ageRating"
+      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+      title="Numbers only"
     />
     <input
       class="form-control mb-2 bg-dark border-0 text-light"
       placeholder="IMDB Score"
       type="number"
       [(ngModel)]="movie.imdbScore"
+      min="1"
+      step="1"
     />
   </div>
   <!-- Button Container -->
