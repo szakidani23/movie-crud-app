@@ -50,8 +50,7 @@
       placeholder="IMDB Score"
       type="number"
       [(ngModel)]="movie.imdbScore"
-      min="1"
-      step="1"
+      (keypress)="decimalFilter($event)"
     />
   </div>
   <!-- Button Container -->
