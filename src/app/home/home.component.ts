@@ -119,7 +119,7 @@ export class HomeComponent implements OnInit {
   /// Limit imdbScore's input field to max two decimals
   /// Code from StackOverflow
   decimalFilter(event: any) {
-    const reg = /^-?\d*(\.\d{0,2})?$/;
+    const reg = /^-?\d*(\.\d{0,1})?$/;
     let input = event.target.value + String.fromCharCode(event.charCode);
 
     if (!reg.test(input)) {
