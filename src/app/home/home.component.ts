@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-home',
@@ -9,25 +10,25 @@ import { Movie } from '../models/movie';
 export class HomeComponent implements OnInit {
   movies: Movie[] = [];
   movie: Movie = new Movie();
-  movieLocalDb: string = 'movieLocalDb';
+  // movieLocalDb: string = 'movieLocalDb';
   editEnabled: boolean = false;
   ascending: boolean = true;
 
+  constructor(private movieService: MovieService) {}
+
   ngOnInit(): void {
-    this.loadData();
+    this.movieService.loadData();
     if (this.movies.length === 0) {
       this.defaultMoviesLoad();
       this.saveData();
     }
   }
 
-  loadData(): void {
-    let json = JSON.parse(localStorage.getItem(this.movieLocalDb) ?? '[]');
-    this.movies = Object.values(json).map((x) => Object.assign(new Movie(), x));
-  }
-
   saveData(): void {
-    localStorage.setItem(this.movieLocalDb, JSON.stringify(this.movies));
+    localStorage.setItem(
+      this.movieService.movieLocalDb,
+      JSON.stringify(this.movies)
+    );
   }
 
   addMovie(): void {
@@ -95,30 +96,30 @@ export class HomeComponent implements OnInit {
     );
     this.ascending = !this.ascending;
   }
-  sortByYear(): void {
-    this.movies.sort((a, b) =>
-      this.ascending ? a.year! - b.year! : b.year! - a.year!
-    );
-    this.ascending = !this.ascending!;
-  }
-  sortByDuration(): void {
-    this.movies.sort((a, b) =>
-      this.ascending ? a.duration! - b.duration! : b.duration! - a.duration!
-    );
-    this.ascending = !this.ascending;
-  }
+  // sortByYear(): void {
+  //   this.movies.sort((a, b) =>
+  //     this.ascending ? a.year! - b.year! : b.year! - a.year!
+  //   );
+  //   this.ascending = !this.ascending!;
+  // }
+  // sortByDuration(): void {
+  //   this.movies.sort((a, b) =>
+  //     this.ascending ? a.duration! - b.duration! : b.duration! - a.duration!
+  //   );
+  //   this.ascending = !this.ascending;
+  // }
   sortByAgeRating(): void {
     this.movies.sort((a, b) =>
       this.ascending ? a.ageRating! - b.ageRating! : b.ageRating! - a.ageRating!
     );
     this.ascending = !this.ascending;
   }
-  sortByScore(): void {
-    this.movies.sort((a, b) =>
-      this.ascending ? a.imdbScore! - b.imdbScore! : b.imdbScore! - a.imdbScore!
-    );
-    this.ascending = !this.ascending;
-  }
+  // sortByScore(): void {
+  //   this.movies.sort((a, b) =>
+  //     this.ascending ? a.imdbScore! - b.imdbScore! : b.imdbScore! - a.imdbScore!
+  //   );
+  //   this.ascending = !this.ascending;
+  // }
 
   /// Limit imdbScore's input field to max 1 decimals
   /// Code from StackOverflow
