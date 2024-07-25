@@ -15,6 +15,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+    if (this.movies.length === 0) {
+      this.defaultMoviesLoad();
+      this.saveData();
+    }
   }
 
   loadData(): void {
@@ -116,7 +120,7 @@ export class HomeComponent implements OnInit {
     this.ascending = !this.ascending;
   }
 
-  /// Limit imdbScore's input field to max two decimals
+  /// Limit imdbScore's input field to max 1 decimals
   /// Code from StackOverflow
   decimalFilter(event: any) {
     const reg = /^-?\d*(\.\d{0,1})?$/;
@@ -125,5 +129,43 @@ export class HomeComponent implements OnInit {
     if (!reg.test(input)) {
       event.preventDefault();
     }
+  }
+
+  defaultMoviesLoad(): void {
+    let d = new Movie();
+    d.name = 'Shaun of the Dead (default)';
+    d.genre = 'Comedy / Horror';
+    d.year = 2004;
+    d.duration = 99;
+    d.ageRating = 16;
+    d.imdbScore = 7.9;
+    this.movies.push(d);
+
+    d = new Movie();
+    d.name = 'Idiocracy (default)';
+    d.genre = 'Comedy';
+    d.year = 2006;
+    d.duration = 84;
+    d.ageRating = 12;
+    d.imdbScore = 6.5;
+    this.movies.push(d);
+
+    d = new Movie();
+    d.name = 'Inception (default)';
+    d.genre = 'Adventure / Action';
+    d.year = 2010;
+    d.duration = 148;
+    d.ageRating = 16;
+    d.imdbScore = 8.8;
+    this.movies.push(d);
+
+    d = new Movie();
+    d.name = `Harry Potter and the Sorcerer's Stone (default)`;
+    d.genre = 'Adventure / Action';
+    d.year = 2001;
+    d.duration = 152;
+    d.ageRating = 14;
+    d.imdbScore = 7.6;
+    this.movies.push(d);
   }
 }
