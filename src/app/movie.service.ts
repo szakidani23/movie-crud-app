@@ -11,6 +11,7 @@ export class MovieService {
   ascending: boolean = true;
 
   constructor() {}
+
   // CRUD - Read
   loadData(): void {
     let json = JSON.parse(localStorage.getItem(this.movieLocalDb) ?? '[]');

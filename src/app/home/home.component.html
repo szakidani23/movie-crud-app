@@ -80,11 +80,11 @@
   <div class="tableContainer">
     <table
       *ngIf="movies.length > 0"
-      class="table table-sm table-dark table-striped text-center"
+      class="table table-sm table-dark table-striped"
     >
       <thead>
         <tr>
-          <th>#</th>
+          <th class="pe-3">#</th>
           <th role="button" (click)="movieService.sortByName()">
             Name <i class="bi bi-arrow-down-up"></i>
           </th>

@@ -43,8 +43,11 @@ export class HomeComponent implements OnInit {
   }
   /// CRUD - Delete
   deleteMovie(movie: Movie): void {
+    console.log('Deleting movie:', movie);
     this.movies = this.movies.filter((x) => x.id !== movie.id);
+    console.log('Remaining movies:', this.movies);
     this.saveData();
+    this.movies = [...this.movies]; // Trigger change detection
   }
   /// CRUD - Update
   saveEdits(): void {
