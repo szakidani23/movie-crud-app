@@ -8,15 +8,16 @@ import { MovieService } from '../movie.service';
   styleUrl: './topmovies.component.scss',
 })
 export class TopmoviesComponent implements OnInit {
-  constructor(private movieService: MovieService) {}
-  ngOnInit(): void {
-    this.movieService.loadData();
-  }
   movies: Movie[] = [];
   movie: Movie = new Movie();
-  movieLocalDb: string = 'movieLocalDb';
-  ascending: boolean = true;
   averageScore: number | null = null;
+
+  constructor(public movieService: MovieService) {}
+
+  ngOnInit(): void {
+    this.movieService.loadData();
+    this.movies = this.movieService.movies;
+  }
 
   topRatedMovie(): string {
     return [...this.movies].sort((a, b) => b.imdbScore! - a.imdbScore!)[0].name;

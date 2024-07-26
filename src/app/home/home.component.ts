@@ -10,14 +10,13 @@ import { MovieService } from '../movie.service';
 export class HomeComponent implements OnInit {
   movies: Movie[] = [];
   movie: Movie = new Movie();
-  // movieLocalDb: string = 'movieLocalDb';
   editEnabled: boolean = false;
-  ascending: boolean = true;
 
-  constructor(private movieService: MovieService) {}
+  constructor(public movieService: MovieService) {}
 
   ngOnInit(): void {
     this.movieService.loadData();
+    this.movies = this.movieService.movies;
     if (this.movies.length === 0) {
       this.defaultMoviesLoad();
       this.saveData();
@@ -25,12 +24,13 @@ export class HomeComponent implements OnInit {
   }
 
   saveData(): void {
+    this.movies = this.movieService.movies;
     localStorage.setItem(
       this.movieService.movieLocalDb,
       JSON.stringify(this.movies)
     );
   }
-
+  /// CRUD - Create
   addMovie(): void {
     this.movies.unshift(Object.assign(new Movie(), this.movie));
     this.movie.resetProperties();
@@ -41,12 +41,12 @@ export class HomeComponent implements OnInit {
     Object.assign(this.movie, movie);
     this.editEnabled = true;
   }
-
+  /// CRUD - Delete
   deleteMovie(movie: Movie): void {
     this.movies = this.movies.filter((x) => x.id !== movie.id);
     this.saveData();
   }
-
+  /// CRUD - Update
   saveEdits(): void {
     let index = this.movies.findIndex((x) => x.id === this.movie.id);
     this.movies[index] = Object.assign(new Movie(), this.movie);
@@ -64,62 +64,23 @@ export class HomeComponent implements OnInit {
     return (
       this.movie.name === '' ||
       this.movie.name.length < 2 ||
+      this.movie.name.length > 25 ||
       this.movie.genre === '' ||
       this.movie.genre.length <= 3 ||
+      this.movie.genre.length > 20 ||
       this.movie.year === null ||
       this.movie.year < 1800 ||
       this.movie.duration === null ||
       this.movie.duration < 1 ||
+      this.movie.duration > 999 ||
       this.movie.ageRating === null ||
       this.movie.ageRating < 6 ||
+      this.movie.ageRating > 18 ||
       this.movie.imdbScore === null ||
       this.movie.imdbScore < 1 ||
       this.movie.imdbScore > 10
     );
   }
-
-  // Sorting
-
-  sortByName(): void {
-    this.movies.sort((a, b) =>
-      this.ascending
-        ? a.name.localeCompare(b.name)
-        : b.name.localeCompare(a.name)
-    );
-    this.ascending = !this.ascending;
-  }
-  sortByGenre(): void {
-    this.movies.sort((a, b) =>
-      this.ascending
-        ? a.genre.localeCompare(b.genre)
-        : b.genre.localeCompare(a.genre)
-    );
-    this.ascending = !this.ascending;
-  }
-  // sortByYear(): void {
-  //   this.movies.sort((a, b) =>
-  //     this.ascending ? a.year! - b.year! : b.year! - a.year!
-  //   );
-  //   this.ascending = !this.ascending!;
-  // }
-  // sortByDuration(): void {
-  //   this.movies.sort((a, b) =>
-  //     this.ascending ? a.duration! - b.duration! : b.duration! - a.duration!
-  //   );
-  //   this.ascending = !this.ascending;
-  // }
-  sortByAgeRating(): void {
-    this.movies.sort((a, b) =>
-      this.ascending ? a.ageRating! - b.ageRating! : b.ageRating! - a.ageRating!
-    );
-    this.ascending = !this.ascending;
-  }
-  // sortByScore(): void {
-  //   this.movies.sort((a, b) =>
-  //     this.ascending ? a.imdbScore! - b.imdbScore! : b.imdbScore! - a.imdbScore!
-  //   );
-  //   this.ascending = !this.ascending;
-  // }
 
   /// Limit imdbScore's input field to max 1 decimals
   /// Code from StackOverflow

@@ -46,14 +46,20 @@
     <table class="table table-sm table-striped table-dark">
       <thead>
         <tr>
-          <th class="ps-3">Name</th>
-          <th (click)="sortByYear()" role="button">
+          <th (click)="movieService.sortByName()" role="button" class="ps-3">
+            Name
+          </th>
+          <th (click)="movieService.sortByGenre()" role="button">Genre</th>
+          <th (click)="movieService.sortByYear()" role="button">
             Year <i class="bi bi-arrow-down-up"></i>
           </th>
-          <th (click)="sortByDuration()" role="button">
+          <th (click)="movieService.sortByDuration()" role="button">
             Duration <i class="bi bi-arrow-down-up"></i>
           </th>
-          <th (click)="sortByScore()" role="button">
+          <th (click)="movieService.sortByAgeRating()" role="button">
+            Age Rating
+          </th>
+          <th (click)="movieService.sortByScore()" role="button">
             imdB Score <i class="bi bi-arrow-down-up"></i>
           </th>
         </tr>
@@ -61,8 +67,10 @@
       <tbody>
         <tr *ngFor="let movie of movies; index as i">
           <td class="ps-3">{{ movie.name }}</td>
+          <td>{{ movie.genre }}</td>
           <td>{{ movie.year }}</td>
           <td>{{ movie.duration }} mins</td>
+          <td>{{ movie.ageRating }} +</td>
           <td>{{ movie.imdbScore }}</td>
         </tr>
       </tbody>
