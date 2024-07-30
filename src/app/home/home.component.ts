@@ -5,7 +5,7 @@ import { MovieService } from '../movie.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   movies: Movie[] = [];
@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   constructor(public movieService: MovieService) {}
 
+  /// CRUD - READ
   ngOnInit(): void {
     this.movieService.loadData();
     this.movies = this.movieService.movies;
@@ -24,13 +25,11 @@ export class HomeComponent implements OnInit {
   }
 
   saveData(): void {
-    this.movies = this.movieService.movies;
-    localStorage.setItem(
-      this.movieService.movieLocalDb,
-      JSON.stringify(this.movies)
-    );
+    this.movieService.saveData(this.movies);
   }
+
   /// CRUD - Create
+
   addMovie(): void {
     this.movies.unshift(Object.assign(new Movie(), this.movie));
     this.movie.resetProperties();
@@ -41,15 +40,19 @@ export class HomeComponent implements OnInit {
     Object.assign(this.movie, movie);
     this.editEnabled = true;
   }
+
   /// CRUD - Delete
+
   deleteMovie(movie: Movie): void {
     console.log('Deleting movie:', movie);
     this.movies = this.movies.filter((x) => x.id !== movie.id);
     console.log('Remaining movies:', this.movies);
     this.saveData();
-    this.movies = [...this.movies]; // Trigger change detection
+    this.movies = [...this.movies];
   }
+
   /// CRUD - Update
+
   saveEdits(): void {
     let index = this.movies.findIndex((x) => x.id === this.movie.id);
     this.movies[index] = Object.assign(new Movie(), this.movie);

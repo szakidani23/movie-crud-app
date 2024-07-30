@@ -6,16 +6,22 @@ import { Movie } from './models/movie';
 })
 export class MovieService {
   movies: Movie[] = [];
-  movie: Movie = new Movie();
   movieLocalDb: string = 'movieLocalDb';
   ascending: boolean = true;
 
-  constructor() {}
+  constructor() {
+    this.loadData();
+  }
 
   // CRUD - Read
   loadData(): void {
     let json = JSON.parse(localStorage.getItem(this.movieLocalDb) ?? '[]');
     this.movies = Object.values(json).map((x) => Object.assign(new Movie(), x));
+  }
+
+  saveData(movies: Movie[]): void {
+    this.movies = movies; // Corrected this line to update the movies array
+    localStorage.setItem(this.movieLocalDb, JSON.stringify(this.movies));
   }
 
   /// Sorting the table
