@@ -79,4 +79,9 @@ export class MovieQuizGameComponent implements OnInit {
     );
     this.quizOver = true;
   }
+
+  playAgain(): void {
+    this.quizOver = false;
+    this.generateQuestions();
+  }
 }

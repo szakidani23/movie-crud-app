@@ -80,51 +80,64 @@
   <div class="tableContainer">
     <table
       *ngIf="movies.length > 0"
-      class="table table-sm table-dark table-striped"
+      class="table table-sm table-dark table-striped text-center text-lg-start"
     >
       <thead>
-        <tr>
+        <tr class="align-middle">
           <th class="pe-3">#</th>
           <th role="button" (click)="movieService.sortByName()">
             Name <i class="bi bi-arrow-down-up"></i>
           </th>
           <th role="button" (click)="movieService.sortByGenre()">
-            Genre <i class="bi bi-arrow-down-up"></i>
+            Genre <i class="bi bi-arrow-down-up hidden"></i>
           </th>
           <th role="button" (click)="movieService.sortByYear()">
-            Year <i class="bi bi-arrow-down-up"></i>
+            Year <i class="bi bi-arrow-down-up hidden"></i>
           </th>
-          <th role="button" (click)="movieService.sortByDuration()">
-            Duration <i class="bi bi-arrow-down-up"></i>
+          <th
+            class="px-2"
+            role="button"
+            (click)="movieService.sortByDuration()"
+          >
+            Duration <i class="bi bi-arrow-down-up hidden"></i>
           </th>
-          <th role="button" (click)="movieService.sortByAgeRating()">
-            Age Rating <i class="bi bi-arrow-down-up"></i>
+          <th
+            class="hidden"
+            role="button"
+            (click)="movieService.sortByAgeRating()"
+          >
+            Age Rating <i class="bi bi-arrow-down-up hidden"></i>
           </th>
           <th role="button" (click)="movieService.sortByScore()">
-            imdB Score <i class="bi bi-arrow-down-up"></i>
+            imdB Score <i class="bi bi-arrow-down-up hidden"></i>
           </th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let movie of movies; index as i">
+        <tr class="align-middle" *ngFor="let movie of movies; index as i">
           <td>{{ i + 1 }}</td>
           <td>{{ movie.name }}</td>
           <td>{{ movie.genre }}</td>
           <td>{{ movie.year }}</td>
-          <td>{{ movie.duration }} mins</td>
-          <td>{{ movie.ageRating }} +</td>
+          <td class="px-2">{{ movie.duration }} mins</td>
+          <td class="hidden">{{ movie.ageRating }} +</td>
           <td>{{ movie.imdbScore }}</td>
           <td>
-            <button
-              class="btn btn-sm btn-warning me-2"
-              (click)="loadForEdit(movie)"
-            >
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button class="btn btn-sm btn-danger" (click)="deleteMovie(movie)">
-              <i class="bi bi-trash"></i>
-            </button>
+            <div class="button-div d-flex">
+              <button
+                class="btn btn-sm btn-warning me-2"
+                (click)="loadForEdit(movie)"
+              >
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="deleteMovie(movie)"
+              >
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>

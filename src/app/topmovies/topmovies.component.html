@@ -1,5 +1,6 @@
 <div class="container">
   <div class="statBox">
+    <!-- Table for Top Movie Stats -->
     <table class="table table-sm table-warning table-striped">
       <thead>
         <tr>
@@ -38,39 +39,53 @@
       Add more movies <i class="bi bi-plus"></i>
     </button>
   </div>
-
+  <!-- If there are no movies this message should show up! -->
   <p class="fs-3" *ngIf="movies.length < 1">
     Table is empty. Please add a movie!
   </p>
+
+  <!-- Movies table -->
   <div class="statTable" *ngIf="movies.length > 0">
-    <table class="table table-sm table-striped table-dark">
+    <table
+      class="table table-sm table-striped table-dark text-center text-lg-start"
+    >
       <thead>
-        <tr>
+        <tr class="align-middle">
           <th (click)="movieService.sortByName()" role="button" class="ps-3">
-            Name
+            Name <i class="bi bi-arrow-down-up"></i>
           </th>
-          <th (click)="movieService.sortByGenre()" role="button">Genre</th>
+          <th (click)="movieService.sortByGenre()" role="button">
+            Genre <i class="bi bi-arrow-down-up hidden"></i>
+          </th>
           <th (click)="movieService.sortByYear()" role="button">
-            Year <i class="bi bi-arrow-down-up"></i>
+            Year <i class="bi bi-arrow-down-up hidden"></i>
           </th>
-          <th (click)="movieService.sortByDuration()" role="button">
-            Duration <i class="bi bi-arrow-down-up"></i>
+          <th
+            class="px-3"
+            (click)="movieService.sortByDuration()"
+            role="button"
+          >
+            Duration <i class="bi bi-arrow-down-up hidden"></i>
           </th>
-          <th (click)="movieService.sortByAgeRating()" role="button">
-            Age Rating
+          <th
+            class="hidden"
+            (click)="movieService.sortByAgeRating()"
+            role="button"
+          >
+            Age Rating <i class="bi bi-arrow-down-up"></i>
           </th>
           <th (click)="movieService.sortByScore()" role="button">
-            imdB Score <i class="bi bi-arrow-down-up"></i>
+            imdB Score <i class="bi bi-arrow-down-up hidden"></i>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let movie of movies; index as i">
+        <tr class="align-middle" *ngFor="let movie of movies; index as i">
           <td class="ps-3">{{ movie.name }}</td>
           <td>{{ movie.genre }}</td>
           <td>{{ movie.year }}</td>
-          <td>{{ movie.duration }} mins</td>
-          <td>{{ movie.ageRating }} +</td>
+          <td class="px-3">{{ movie.duration }} mins</td>
+          <td class="hidden">{{ movie.ageRating }} +</td>
           <td>{{ movie.imdbScore }}</td>
         </tr>
       </tbody>

@@ -14,8 +14,8 @@
         {{ option }}
       </div>
     </div>
-    <button class="btn btn-sm btn-primary mt-3" (click)="submitQuiz()">
-      Submit Quiz
+    <button class="btn btn-md btn-warning mt-3" (click)="submitQuiz()">
+      Submit Quiz <i class="bi bi-send"></i>
     </button>
   </div>
 
@@ -26,5 +26,8 @@
     <p>Your Score: {{ score }}/ {{ movies.length }}</p>
     <p *ngIf="score >= movies.length - 1">Congratulations!</p>
     <p *ngIf="score < movies.length - 1">Better luck next time!</p>
+    <button class="btn btn-sm btn-warning" (click)="playAgain()">
+      Play Again! <i class="bi bi-arrow-repeat"></i>
+    </button>
   </div>
 </div>
