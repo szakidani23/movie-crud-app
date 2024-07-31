@@ -1,7 +1,9 @@
 <div class="quiz">
   <div *ngIf="!quizOver">
     <div *ngFor="let question of currentQuestions; index as i">
-      <p>{{ i + 1 }}. {{ question.text }}</p>
+      <em
+        ><p class="my-2">{{ i + 1 }}. {{ question.text }}</p></em
+      >
       <div *ngFor="let option of question.options">
         <input
           type="radio"
