@@ -1,4 +1,4 @@
-<div class="quiz-container">
+<div class="quiz">
   <div *ngIf="!quizOver">
     <div *ngFor="let question of currentQuestions; index as i">
       <p>{{ i + 1 }}. {{ question.text }}</p>
@@ -22,7 +22,7 @@
     [ngClass]="score >= movies.length - 1 ? 'quiz-passed' : 'quiz-failed'"
   >
     <p>Your Score: {{ score }}/ {{ movies.length }}</p>
-    <p *ngIf="score >= 6">Congratulations!</p>
-    <p *ngIf="score < 6">Better luck next time!</p>
+    <p *ngIf="score >= movies.length - 1">Congratulations!</p>
+    <p *ngIf="score < movies.length - 1">Better luck next time!</p>
   </div>
 </div>
