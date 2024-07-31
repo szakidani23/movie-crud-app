@@ -1,18 +1,28 @@
 <div class="quiz-container">
   <div *ngIf="!quizOver">
-    <div *ngFor="let question of currentQuestion; index as i">
+    <div *ngFor="let question of currentQuestions; index as i">
       <p>{{ i + 1 }}. {{ question.text }}</p>
-      <div *ngFor="let option of question.options"></div>
-      <input
-        type="radio"
-        [name]="'question' + i"
-        [value]="option"
-        (change)="selectAnswer(i, option)"
-      />
-      {{ option }}
+      <div *ngFor="let option of question.options">
+        <input
+          type="radio"
+          [name]="'question' + i"
+          [value]="option"
+          (change)="selectAnswer(i, option)"
+        />
+        {{ option }}
+      </div>
     </div>
+    <button class="btn btn-sm btn-primary mt-3" (click)="submitQuiz()">
+      Submit Quiz
+    </button>
   </div>
-  <button class="btn btn-sm btn-primary" (click)="submitQuiz()">
-    Submit Quiz
-  </button>
+
+  <div
+    *ngIf="quizOver"
+    [ngClass]="score >= movies.length - 1 ? 'quiz-passed' : 'quiz-failed'"
+  >
+    <p>Your Score: {{ score }}/ {{ movies.length }}</p>
+    <p *ngIf="score >= 6">Congratulations!</p>
+    <p *ngIf="score < 6">Better luck next time!</p>
+  </div>
 </div>
