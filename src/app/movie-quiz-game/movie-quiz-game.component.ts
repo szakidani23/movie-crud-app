@@ -29,7 +29,25 @@ export class MovieQuizGameComponent implements OnInit {
     }));
   }
 
-  getOptions() {}
+  getOptions(correctAnswer: string): string[] {
+    const genres = Array.from(new Set(this.movies.map((m) => m.genre)));
+    const shuffledGenres = genres.sort(() => 0.5 - Math.random());
+    return [
+      correctAnswer,
+      ...shuffledGenres.filter((g) => g !== correctAnswer).slice(0, 3),
+    ].sort(() => 0.5 - Math.random());
+  }
 
-  selectedAnswer() {}
+  selectAnswer(questionIndex: number, answer: string): void {
+    this.selectedAnswers[questionIndex] = answer;
+  }
+
+  submitQuiz(): void {
+    this.score = this.currentQuestions.reduce(
+      (acc, question, index) =>
+        acc + (this.selectedAnswers[index] === question.answer ? 1 : 0),
+      0
+    );
+    this.quizOver = true;
+  }
 }

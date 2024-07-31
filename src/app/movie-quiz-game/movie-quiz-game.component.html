@@ -7,10 +7,12 @@
         type="radio"
         [name]="'question' + i"
         [value]="option"
-        (change)="selectedAnswer(i, option)"
+        (change)="selectAnswer(i, option)"
       />
       {{ option }}
     </div>
   </div>
-  <button class="btn btn-sm btn-primary">Submit Quiz</button>
+  <button class="btn btn-sm btn-primary" (click)="submitQuiz()">
+    Submit Quiz
+  </button>
 </div>
