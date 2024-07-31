@@ -37,3 +37,14 @@ li,
 button {
   font-family: "Orbitron", sans-serif;
 }
+
+html {
+  overflow-x: hidden;
+  @media screen and (max-width: 800px) {
+    font-size: 70%;
+    padding: 2rem;
+  }
+  @media screen and (min-width: 2000px) {
+    font-size: 160%;
+  }
+}
