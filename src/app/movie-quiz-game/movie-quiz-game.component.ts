@@ -19,4 +19,17 @@ export class MovieQuizGameComponent implements OnInit {
   ngOnInit(): void {
     this.movies = this.movieService.movies;
   }
+
+  generateQuestions(): void {
+    let shuffledMovies = this.movies.sort(() => 0.5 - Math.random());
+    this.currentQuestion = shuffledMovies.slice(0, 10).map((movie) => ({
+      text: `What is the genre of the movie ${movie.name} ?`,
+      answer: movie.genre,
+      options: this.getOptions(movie.genre),
+    }));
+  }
+
+  getOptions() {}
+
+  selectedAnswer() {}
 }
