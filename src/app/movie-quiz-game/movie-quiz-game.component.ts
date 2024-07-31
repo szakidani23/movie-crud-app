@@ -23,19 +23,47 @@ export class MovieQuizGameComponent implements OnInit {
 
   generateQuestions(): void {
     let shuffledMovies = this.movies.sort(() => 0.5 - Math.random());
-    this.currentQuestions = shuffledMovies.slice(0, 10).map((movie) => ({
-      text: `What is the genre of the movie "${movie.name}"?`,
-      answer: movie.genre,
-      options: this.getOptions(movie.genre),
-    }));
+    this.currentQuestions = shuffledMovies
+      .slice(0, 10)
+      .map((movie) => this.createQuestion(movie));
   }
 
-  getOptions(correctAnswer: string): string[] {
-    let genres = Array.from(new Set(this.movies.map((m) => m.genre)));
-    let shuffledGenres = genres.sort(() => 0.5 - Math.random());
+  createQuestion(movie: Movie): any {
+    let questionType = Math.random() < 0.5 ? 'genre' : 'year';
+    if (questionType === 'genre') {
+      return {
+        text: `What is the genre of the movie "${movie.name}"?`,
+        answer: movie.genre,
+        options: this.getOptions('genre', movie.genre),
+      };
+    } else {
+      return {
+        text: `What is the release year of the movie "${movie.name}"?`,
+        answer: movie.year?.toString(),
+        options: this.getOptions('year', movie.year?.toString()),
+      };
+    }
+  }
+
+  getOptions(
+    type: 'genre' | 'year',
+    correctAnswer: string | undefined
+  ): string[] {
+    let allOptions: { [key: string]: string[] } = {
+      genre: Array.from(new Set(this.movies.map((m) => m.genre))),
+      year: Array.from(
+        new Set(
+          this.movies
+            .map((m) => m.year?.toString() ?? '')
+            .filter((year) => year !== '')
+        )
+      ),
+    };
+
+    let shuffledOptions = allOptions[type].sort(() => 0.5 - Math.random());
     return [
-      correctAnswer,
-      ...shuffledGenres.filter((g) => g !== correctAnswer).slice(0, 3),
+      correctAnswer ?? '',
+      ...shuffledOptions.filter((opt) => opt !== correctAnswer).slice(0, 3),
     ].sort(() => 0.5 - Math.random());
   }
 
