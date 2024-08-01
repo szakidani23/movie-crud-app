@@ -76,6 +76,7 @@ export class HomeComponent implements OnInit {
       this.movie.genre.length > 20 ||
       this.movie.year === null ||
       this.movie.year < 1800 ||
+      this.movie.year > 2028 ||
       this.movie.duration === null ||
       this.movie.duration < 1 ||
       this.movie.duration > 999 ||
@@ -99,10 +100,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  /// Default Movies
   defaultMoviesLoad(): void {
     let d = new Movie();
-    d.name = 'Shaun of the Dead (default)';
-    d.genre = 'Comedy / Horror';
+    d.name = 'Shaun of the Dead';
+    d.genre = 'Comedy, Horror';
     d.year = 2004;
     d.duration = 99;
     d.ageRating = 16;
@@ -110,7 +112,7 @@ export class HomeComponent implements OnInit {
     this.movies.push(d);
 
     d = new Movie();
-    d.name = 'Idiocracy (default)';
+    d.name = 'Idiocracy';
     d.genre = 'Comedy';
     d.year = 2006;
     d.duration = 84;
@@ -119,8 +121,8 @@ export class HomeComponent implements OnInit {
     this.movies.push(d);
 
     d = new Movie();
-    d.name = 'Inception (default)';
-    d.genre = 'Adventure / Action';
+    d.name = 'Inception';
+    d.genre = 'Adventure, Action';
     d.year = 2010;
     d.duration = 148;
     d.ageRating = 16;
@@ -128,12 +130,38 @@ export class HomeComponent implements OnInit {
     this.movies.push(d);
 
     d = new Movie();
-    d.name = `Harry Potter and the Sorcerer's Stone (default)`;
-    d.genre = 'Adventure / Action';
+    d.name = `Harry Potter 1`;
+    d.genre = 'Adventure, Action';
     d.year = 2001;
     d.duration = 152;
     d.ageRating = 14;
     d.imdbScore = 7.6;
     this.movies.push(d);
+
+    d = new Movie();
+    d.name = 'The Godfather';
+    d.genre = 'Crime, Drama';
+    d.year = 1972;
+    d.duration = 175;
+    d.ageRating = 16;
+    d.imdbScore = 9.2;
+    this.movies.push(d);
+
+    d = new Movie();
+    d.name = 'Avatar';
+    d.genre = 'Adventure, Action';
+    d.year = 2009;
+    d.duration = 162;
+    d.ageRating = 13;
+    d.imdbScore = 7.9;
+    this.movies.push(d);
+
+    d = new Movie();
+    d.name = 'Banana Joe';
+    d.genre = 'Comedy';
+    d.year = 1982;
+    d.duration = 96;
+    d.ageRating = 12;
+    d.imdbScore = 6.3;
   }
 }

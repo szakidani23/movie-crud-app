@@ -8,7 +8,7 @@
 }
 
 .popcorn-img:hover {
-  animation: tilt-n-move-shaking 0.16s infinite;
+  animation: tilt-n-move-shaking 0.18s ease-out;
 }
 
 @keyframes tilt-n-move-shaking {

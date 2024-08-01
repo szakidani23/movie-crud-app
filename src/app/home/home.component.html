@@ -14,12 +14,14 @@
       placeholder="Name"
       type="text"
       [(ngModel)]="movie.name"
+      title="Title of the movie"
     />
     <input
       class="form-control mb-2 bg-dark border-0 text-light"
       placeholder="Genre"
       type="text"
       [(ngModel)]="movie.genre"
+      title="Comedy,Adventure,Thriller,Horror etc."
     />
     <input
       class="form-control mb-2 bg-dark border-0 text-light"
@@ -27,7 +29,7 @@
       type="text"
       [(ngModel)]="movie.year"
       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-      title="Numbers only"
+      title="Release year of the movie"
     />
     <input
       class="form-control mb-2 bg-dark border-0 text-light"
@@ -35,7 +37,7 @@
       type="number"
       [(ngModel)]="movie.duration"
       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-      title="Numbers only"
+      title="Numbers only (minutes)"
     />
     <input
       class="form-control mb-2 bg-dark border-0 text-light"
@@ -43,7 +45,7 @@
       type="number"
       [(ngModel)]="movie.ageRating"
       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-      title="Numbers only"
+      title="Numbers only: 6-18"
     />
     <input
       class="form-control mb-2 bg-dark border-0 text-light"
@@ -51,6 +53,7 @@
       type="number"
       [(ngModel)]="movie.imdbScore"
       (keypress)="decimalFilter($event)"
+      title="for example: 8.6"
     />
   </div>
   <!-- Button Container -->
@@ -84,7 +87,7 @@
     >
       <thead>
         <tr class="align-middle">
-          <th class="pe-3">#</th>
+          <th class="px-3">#</th>
           <th role="button" (click)="movieService.sortByName()">
             Name <i class="bi bi-arrow-down-up"></i>
           </th>
@@ -115,12 +118,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="align-middle" *ngFor="let movie of movies; index as i">
+        <tr
+          class="align-middle align-sm-baseline"
+          *ngFor="let movie of movies; index as i"
+        >
           <td>{{ i + 1 }}</td>
           <td>{{ movie.name }}</td>
           <td>{{ movie.genre }}</td>
           <td>{{ movie.year }}</td>
-          <td class="px-2">{{ movie.duration }} mins</td>
+          <td class="px-0">{{ movie.duration }} mins</td>
           <td class="hidden">{{ movie.ageRating }} +</td>
           <td>{{ movie.imdbScore }}</td>
           <td>
