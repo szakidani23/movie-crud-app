@@ -87,7 +87,7 @@
     >
       <thead>
         <tr class="align-middle">
-          <th class="px-3">#</th>
+          <th class="px-3 hidden">#</th>
           <th role="button" (click)="movieService.sortByName()">
             Name <i class="bi bi-arrow-down-up"></i>
           </th>
@@ -122,7 +122,7 @@
           class="align-middle align-sm-baseline"
           *ngFor="let movie of movies; index as i"
         >
-          <td>{{ i + 1 }}</td>
+          <td class="hidden">{{ i + 1 }}</td>
           <td>{{ movie.name }}</td>
           <td>{{ movie.genre }}</td>
           <td>{{ movie.year }}</td>
